@@ -1,0 +1,13 @@
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int a=sc.nextInt();
+    int b=sc.nextInt();
+    int g=gcd(a,b);
+    System.out.println("The gcd of two numbers is "+g);
+  }
+  public static int gcd(int a,int b){
+    return (b==0)?a:gcd(b,a%b);
+  }
+}
