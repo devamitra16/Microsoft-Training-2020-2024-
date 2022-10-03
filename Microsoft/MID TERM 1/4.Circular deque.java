@@ -10,24 +10,24 @@ class MyCircularDeque {
        this.data=d;
     }
     }
-    final private Node front;
-    final private Node rear;
+    final private Node head;
+    final private Node tail;
     int size,len=0;
     public MyCircularDeque(int k) {
         size=k;
-        front=new Node(-1);
-        rear=new Node(-1);
-        front.next=rear;
-        rear.prev=front;
+        head=new Node(-1);
+        tail=new Node(-1);
+        head.next=tail;
+        tail.prev=head;
     }
     
     public boolean insertFront(int value) {
         if(!isFull()){
             Node nn=new Node(value);
-            nn.next=front.next;
-            front.next.prev=nn;
-            front.next=nn;
-            nn.prev=front;
+            nn.next=head.next;
+            head.next.prev=nn;
+            head.next=nn;
+            nn.prev=head;
             len++;
             return true;
         }
@@ -37,10 +37,10 @@ class MyCircularDeque {
     public boolean insertLast(int value) {
         if(!isFull()){
             Node nn=new Node(value);
-            nn.prev=rear.prev;
-            rear.prev.next=nn;
-            nn.next=rear;
-            rear.prev=nn;
+            nn.prev=tail.prev;
+            tail.prev.next=nn;
+            nn.next=tail;
+            tail.prev=nn;
             len++;
             return true;
         }
@@ -49,8 +49,8 @@ class MyCircularDeque {
     
     public boolean deleteFront() {
         if(!isEmpty()){
-            front.next=front.next.next;
-            front.next.prev=front;
+            head.next=head.next.next;
+            head.next.prev=head;
             len--;
             return true;
         }
@@ -59,8 +59,8 @@ class MyCircularDeque {
     
     public boolean deleteLast() {
         if(!isEmpty()){
-            rear.prev=rear.prev.prev;
-            rear.prev.next=rear;
+            tail.prev=tail.prev.prev;
+            tail.prev.next=tail;
             len--;
             return true;
         }
@@ -68,11 +68,11 @@ class MyCircularDeque {
     }
     
     public int getFront() {
-        return !isEmpty()?front.next.data:-1;
+        return !isEmpty()?head.next.data:-1;
     }
     
     public int getRear() {
-        return !isEmpty()?rear.prev.data:-1;
+        return !isEmpty()?tail.prev.data:-1;
     }
     
     public boolean isEmpty() {
