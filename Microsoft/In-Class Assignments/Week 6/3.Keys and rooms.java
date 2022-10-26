@@ -56,4 +56,29 @@ class Solution {
 }
 
 ******************************************************************************************************************************************************************
+// dfs recursion
+
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        int n=rooms.size();
+        boolean[] visited=new boolean[n];
+        
+        dfs(rooms,0,visited);
+            
+        for(boolean i:visited){
+            if(!i){
+                return false;
+            }
+        }
+        return true;
+    }
+    public void dfs(List<List<Integer>> rooms,int node,boolean[] visited){
+        visited[node]=true;
+        for(int i:rooms.get(node)){
+            if(!visited[i]){
+                dfs(rooms,i,visited);
+            }
+        }
+    }
+}
 
